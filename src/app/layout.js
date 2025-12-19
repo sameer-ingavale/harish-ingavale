@@ -17,11 +17,11 @@ export const metadata = {
 	openGraph: {
 		title: "Harish Ingavale",
 		description: "Made with ♥️ by Sameer Ingavale",
-		url: "https://harishingavale.com", // Replace with your actual deployed domain
+		url: "https://www.harishingavale.com", // Replace with your actual deployed domain
 		siteName: "Harish Ingavale Website",
 		images: [
 			{
-				url: "https://harishingavale.com/pr1.jpeg", // Replace with actual image name
+				url: "https:/www.harishingavale.com/pr1.jpeg", // Replace with actual image name
 				width: 1200,
 				height: 630,
 				alt: "An image of Harish Ingavale",

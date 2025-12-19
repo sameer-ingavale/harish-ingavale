@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 
 export default function Home() {
 	return (
@@ -39,33 +40,37 @@ export default function Home() {
 							href="/endorsements">
 							Endorsements
 						</Link>
-						<a>
-							<Image
-								src="/fb.png"
-								alt="sourcebay-logo"
-								width={15}
-								height={15}
-								className="rounded-lg object-contain"
-							/>
-						</a>
-						<a>
-							<Image
-								src="/ig.png"
-								alt="sourcebay-logo"
-								width={25}
-								height={25}
-								className="rounded-lg object-contain"
-							/>
-						</a>
-						<a>
-							<Image
-								src="/yt.png"
-								alt="sourcebay-logo"
-								width={25}
-								height={25}
-								className="rounded-lg object-contain"
-							/>
-						</a>
+						<div className="flex gap-4 text-xl">
+							<a
+								href="https://www.facebook.com/profile.php?id=100089787927783"
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="Facebook">
+								<FaFacebook />
+							</a>
+							<a
+								href="https://www.instagram.com/harishingavaleofficial"
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="Instagram">
+								<FaInstagram />
+							</a>
+
+							<a
+								href="https://www.youtube.com/watch?v=s9n3K1Ff8uA"
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="YouTube">
+								<FaYoutube />
+							</a>
+							<a
+								href="	https://www.linkedin.com/in/harish-ingavale"
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="LinkedIn">
+								<FaLinkedin />
+							</a>
+						</div>
 					</div>
 				</div>
 			</main>
