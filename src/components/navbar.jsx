@@ -76,9 +76,9 @@ function NavLinks({ mobile = false, onClick }) {
 				Biography
 			</Link>
 
-			<Link href="/issues" className={linkClass("/issues")} onClick={onClick}>
+			{/* <Link href="/issues" className={linkClass("/issues")} onClick={onClick}>
 				Issues
-			</Link>
+			</Link> */}
 
 			<Link
 				href="/prospectus"
