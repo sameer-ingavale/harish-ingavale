@@ -1,81 +1,82 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
+import LanguageToggle from "@/components/languageToggle";
+
+const content = {
+	en: {
+		paragraphs: [
+			"Every election cycle, we get distracted by emotional topics— religion, caste, nationalism, outrage.",
+			"And in that noise, real issues get neglected— infrastructure, corruption, air quality, unemployment.",
+			"And yet, it would be convenient— too convenient— to place all the blame on those in power.",
+			"But let’s be honest for a second.",
+			"A democracy does not merely reflect its leaders. It reflects its voters.",
+			"And while public participation is essential, the character of the person we elect matters profoundly.",
+			"An elected office is not a throne. It is a duty. It demands responsibility, integrity, and accountability.",
+			"Now consider this—",
+			"If there exists an individual who has spent decades understanding responsibility not as a slogan, but as a way of life.",
+			"Someone proven outside politics, in the real world of corporate work and entrepreneurship.",
+			"Such a person is far more likely to govern seriously than one whose only qualification is winning the last election.",
+			"I speak not merely as a citizen, but as a son.",
+			"I was born in a one-room home in Nerul, Sector 8. Five people, limited space, unlimited resolve.",
+			"My father worked long hours—not for recognition, but because responsibility does not punch a clock.",
+			"Later, he built a business from scratch in a highly technical engineering field, competing with global corporations.",
+			"What sustained him was discipline, planning, and an uncompromising commitment to quality.",
+			"In 2022, when I took charge of the business, he stepped into public life—not out of ambition, but obligation.",
+			"Development, to an engineer, is not rhetoric. It is design, execution, and maintenance.",
+			"In the past three years— initiatives for safety, environment, and livability— without holding office.",
+			"If this is possible without authority, imagine what is possible with a mandate.",
+			"The choice is not dramatic. It is deliberate.",
+			"Vote for responsibility.",
+			"Vote for accountability.",
+			"Vote for Harish Ingavale.",
+		],
+	},
+
+	mr: {
+		paragraphs: [
+			"प्रत्येक निवडणुकीत आपण भावना प्रधान मुद्द्यांत अडकतो— धर्म, जात, राष्ट्रवाद, गोंधळ.",
+			"आणि त्या गोंधळात खरे प्रश्न दुर्लक्षित राहतात— पायाभूत सुविधा, भ्रष्टाचार, हवा प्रदूषण, बेरोजगारी.",
+			"संपूर्ण दोष सत्ताधाऱ्यांवर टाकणे सोपे आहे— कदाचित फारच सोपे.",
+			"पण थोडा वेळ प्रामाणिकपणे विचार करूया.",
+			"लोकशाही फक्त नेत्यांचे प्रतिबिंब नसते. ती मतदारांचे प्रतिबिंब असते.",
+			"लोकसहभाग महत्त्वाचा असला तरी आपण निवडतो त्या व्यक्तीचा स्वभाव अधिक महत्त्वाचा असतो.",
+			"निवडून दिलेले पद हे सिंहासन नाही. ती एक जबाबदारी आहे— प्रामाणिकपणा, कर्तव्यभावना आणि उत्तरदायित्व मागणारी.",
+			"आता हे विचारात घ्या—",
+			"जर एखादी व्यक्ती दशकानुदशके जबाबदारी घोषवाक्य म्हणून नाही, तर जीवनपद्धती म्हणून जगत असेल.",
+			"राजकारणाबाहेर, उद्योग आणि उद्योजकतेच्या कठोर वास्तवात स्वतःला सिद्ध केले असेल.",
+			"तर अशी व्यक्ती केवळ मागील निवडणूक जिंकलेल्या व्यक्तीपेक्षा अधिक गांभीर्याने प्रशासन करेल.",
+			"मी केवळ नागरिक म्हणून नाही, तर एक मुलगा म्हणून बोलतो.",
+			"नेरूळ सेक्टर ८ मधील एका खोलीच्या घरात माझा जन्म झाला. पाच जण, मर्यादित जागा, पण अमर्याद जिद्द.",
+			"माझे वडील दीर्घ तास काम करत— ओळखीकरिता नाही, कारण जबाबदारी वेळ पाहत नाही.",
+			"नंतर त्यांनी तांत्रिक अभियांत्रिकी क्षेत्रात शून्यातून व्यवसाय उभारला— जागतिक कंपन्यांशी स्पर्धा करत.",
+			"त्यांना टिकवून ठेवले ते प्रमाण नव्हे, तर शिस्त, नियोजन आणि गुणवत्तेची तडजोड न करणारी वृत्ती.",
+			"२०२२ मध्ये मी व्यवसायाची जबाबदारी स्वीकारल्यानंतर त्यांनी सार्वजनिक जीवनात प्रवेश केला— महत्त्वाकांक्षेपोटी नाही, कर्तव्यभावनेतून.",
+			"अभियंत्यासाठी विकास म्हणजे भाषण नाही. तो डिझाइन, अंमलबजावणी आणि देखभाल असतो.",
+			"मागील तीन वर्षांत— सुरक्षितता, पर्यावरण आणि राहणीमान सुधारण्यासाठी उपक्रम— पद नसतानाही.",
+			"अधिकारांशिवाय हे शक्य असेल, तर अधिकार मिळाल्यावर काय शक्य होईल याची कल्पना करा.",
+			"हा निर्णय नाट्यमय नाही. तो जाणीवपूर्वक आहे.",
+			"जबाबदारीसाठी मतदान करा.",
+			"उत्तरदायित्वासाठी मतदान करा.",
+			"हरीश इंगवले यांना मतदान करा.",
+		],
+	},
+};
 
 export default function Prospectus() {
+	const [language, setLanguage] = useState("en");
+	const t = content[language];
+
 	return (
-		<div className="text-[1.2rem] text-justify leading-8 text-gray-900 mb-16 mt-12 mx-auto">
-			<p className="mb-4 sm:mx-20 mx-8">
-				Every election cycle, we get distracted by emotional topics— religion,
-				caste, nationalism, outrage.
-				<span className="paragraph-break" />
-				And in that noise, real issues get neglected— infrastructure,
-				corruption, air quality, unemployment.
-				<span className="paragraph-break" />
-				And yet, it would be convenient— too convenient— to place all the blame
-				on those in power.
-				<span className="paragraph-break" />
-				But let’s be honest for a second.
-				<span className="paragraph-break" />A democracy does not merely reflect
-				its leaders. It reflects its voters.{" "}
-				<span className="paragraph-break" />
-				And while public participation is essential, the character of the person
-				we elect matters profoundly. <span className="paragraph-break" />
-				An elected office is not a throne. It is a duty. It demands
-				responsibility, integrity, and a willingness to be held accountable.{" "}
-				<span className="paragraph-break" />
-				Now consider this— <span className="paragraph-break" />
-				If there exists an individual who has spent decades understanding
-				responsibility— not as a slogan, but as a way of life.{" "}
-				<span className="paragraph-break" />
-				Someone who has proven himself outside politics, in the unforgiving
-				realities of corporate work and entrepreneurship.{" "}
-				<span className="paragraph-break" />
-				Then such a person is far more likely to govern with seriousness than
-				one whose sole qualification is winning the last election.{" "}
-				<span className="paragraph-break" />I speak not merely as a citizen, but
-				as a son. <span className="paragraph-break" />I was born in this
-				one-room home in Nerul, Sector 8. Five people sharing limited space, but
-				unlimited resolve. My father began here.{" "}
-				<span className="paragraph-break" />
-				As an employee, he worked long hours— not for recognition, but because
-				responsibility does not punch a clock.{" "}
-				<span className="paragraph-break" />
-				As a father, he ensured we were cared for, even if it meant personal
-				sacrifice. <span className="paragraph-break" />I often woke up after he
-				had left for work and fell asleep before he returned.{" "}
-				<span className="paragraph-break" />
-				To him, hard work was not an act of heroism. It was simply expected.
-				<span className="paragraph-break" />
-				Later, he built a business from the ground up. A solitary effort in a
-				highly technical engineering field— competing with global corporations
-				armed with far greater resources. <span className="paragraph-break" />
-				What sustained him was not scale, but discipline. Meticulous planning.
-				Analytical thinking. And an uncompromising commitment to excellence.{" "}
-				<span className="paragraph-break" />
-				In 2022, when I assumed responsibility for the business, he turned to
-				public life. Not out of ambition, but out of obligation.{" "}
-				<span className="paragraph-break" />
-				Because the same principles that build credible institutions— process,
-				accountability, foresight— are precisely what governance demands.{" "}
-				<span className="paragraph-break" />
-				To an engineer, development is never rhetoric. It is design. It is
-				execution. It is maintenance. And his work speaks quietly, but clearly.
-				<span className="paragraph-break" />
-				In the past three years— Smoke shops shut down in Sector 4, Nerul.
-				Initiatives to improve safety and livability. Trees planted to combat
-				rising air pollution. <span className="paragraph-break" />
-				All accomplished without holding elected office. Simply because it was
-				necessary. <span className="paragraph-break" />
-				And if such commitment is possible without authority, one can only
-				imagine what is possible with a mandate.{" "}
-				<span className="paragraph-break" />
-				The choice before us is not dramatic. It is deliberate.{" "}
-				<span className="paragraph-break" />
-				Vote for responsibility. <span className="paragraph-break" />
-				Vote for accountability. <span className="paragraph-break" />
-				Vote for Harish Ingavale.
-			</p>
+		<div className="max-w-4xl mx-auto mt-12 mb-16 px-6 text-[1.15rem] leading-8 text-gray-900">
+			<LanguageToggle language={language} setLanguage={setLanguage} />
+
+			{t.paragraphs.map((text, i) => (
+				<p key={i} className="mb-4 text-justify">
+					{text}
+				</p>
+			))}
 		</div>
 	);
 }
