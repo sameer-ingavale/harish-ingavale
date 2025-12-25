@@ -1,34 +1,69 @@
 import Image from "next/image";
-import YouTubeEmbed from "../components/video";
+import Link from "next/link";
 
 export default function Home() {
 	return (
-		<div className="flex min-h-screen items-center justify-center">
-			<main className="flex min-h-screen w-full flex-col items-center justify-between text-gray-900">
-				{/* Mobile Hero */}
-				<Image
-					src="/mobile_hero.png"
-					alt="Hero"
-					width={1080}
-					height={1350}
-					className="block md:hidden w-full h-auto"
-				/>
-				{/* 	<div className="w-full text-4xl">
-					<div>Educated Outsider. Problem-Solver.</div>
-					<div>Real change. Real progress.</div>
-					<div>For Ward #22.</div>
-				</div> */}
+		<main className="text-gray-900">
+			{/* ================= HERO ================= */}
+			<section className="min-h-[80vh] flex items-center">
+				<div className="mx-auto max-w-7xl px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+					{/* Left: Text */}
+					<div>
+						<h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-snug">
+							Responsible Voice for{" "}
+							<span className="bg-amber-100 px-1">Ward 22</span>
+						</h1>
 
-				{/* Desktop Hero */}
-				<Image
-					src="/desk_banner.png"
-					alt="Hero"
-					width={1920}
-					height={1080}
-					className="hidden md:block w-full h-auto"
-				/>
-				<YouTubeEmbed url="https://www.youtube.com/watch?v=Esh9nABH3zY" />
-			</main>
-		</div>
+						<p className="mt-4 text-lg text-gray-700 max-w-xl">
+							Focused on local issues, transparent governance, and citizen-first
+							development.
+						</p>
+					</div>
+
+					{/* Right: Image */}
+					<div className="relative h-[420px] md:h-[520px]">
+						<Image
+							src="/hero_harish.png" // transparent background image
+							alt="Harish Ingavale"
+							fill
+							className="object-contain object-bottom pt-16 px-8"
+							priority
+						/>
+					</div>
+				</div>
+			</section>
+
+			{/* ================= ABOUT PREVIEW ================= */}
+			<section className="py-20 bg-[#FCF9F2]">
+				<div className="mx-auto max-w-7xl px-4 grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
+					{/* Text */}
+					<div className="md:col-span-3">
+						<h2 className="text-2xl font-semibold mb-4">
+							About Harish Ingavale
+						</h2>
+
+						<p className="text-gray-700 leading-relaxed max-w-3xl">
+							Born and raised in the constituency, Harish Ingavale understands
+							the everyday realities of local citizens. He believes governance
+							should be accessible, accountable, and rooted in public service.
+						</p>
+
+						<Link
+							href="/biography"
+							className="inline-block mt-4 text-amber-600 font-medium hover:underline">
+							Read Full Biography →
+						</Link>
+					</div>
+				</div>
+			</section>
+
+			{/* ================= FOOTER ================= */}
+			<footer className="py-10 border-t text-sm text-gray-600">
+				<div className="mx-auto max-w-7xl px-4 flex flex-col md:flex-row justify-between gap-4">
+					<div>© {new Date().getFullYear()} Harish Ingavale · Ward 22</div>
+					<div>Election campaign website</div>
+				</div>
+			</footer>
+		</main>
 	);
 }

@@ -140,7 +140,7 @@ export default function MediaPageClient() {
 				<h2 className="text-2xl font-semibold mb-6">{t.featured}</h2>
 
 				<div className="grid md:grid-cols-2 gap-6">
-					<div className="aspect-video rounded-lg overflow-hidden border">
+					<div className="aspect-video rounded-lg overflow-hidden border border-gray-300">
 						<iframe
 							className="w-full h-full"
 							src={`https://www.youtube.com/embed/${mediaData.featuredVideo.youtubeId}`}
@@ -171,7 +171,7 @@ export default function MediaPageClient() {
 								alt={mediaData.featuredVideo.channel.name}
 								width={40}
 								height={40}
-								className="rounded-full border"
+								className="rounded-full border border-gray-300"
 							/>
 							<span className="text-sm font-medium text-gray-800">
 								{mediaData.featuredVideo.channel.name}
@@ -191,13 +191,13 @@ export default function MediaPageClient() {
 							key={i}
 							href={`https://www.youtube.com/watch?v=${v.youtubeId}`}
 							target="_blank"
-							className="flex gap-4 border-b pb-4 hover:opacity-90">
+							className="flex gap-4 border-b pb-4 hover:opacity-90 border-gray-500">
 							<Image
 								src={`https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg`}
 								alt={v.title}
 								width={200}
 								height={200}
-								className="rounded-md border"
+								className="rounded-md border border-gray-300"
 								unoptimized
 							/>
 							<div>
@@ -218,7 +218,7 @@ export default function MediaPageClient() {
 					{mediaData.articles.map((a, i) => (
 						<div
 							key={i}
-							className="flex gap-4 border-b pb-4 cursor-pointer hover:opacity-90"
+							className="flex gap-4 border-b pb-4 cursor-pointer hover:opacity-90 border-gray-500"
 							onClick={() => setLightbox(a.image)}>
 							{/* Newspaper thumbnail */}
 							<Image
@@ -226,7 +226,7 @@ export default function MediaPageClient() {
 								alt={a.title}
 								width={200}
 								height={200}
-								className="rounded-md border shrink-0"
+								className="rounded-md border shrink-0  border-gray-300"
 							/>
 
 							{/* Text content */}
@@ -260,7 +260,7 @@ export default function MediaPageClient() {
 								alt="Campaign"
 								width={300}
 								height={200}
-								className="rounded-lg border shrink-0"
+								className="rounded-lg border shrink-0 border-gray-300"
 							/>
 						))}
 
@@ -272,7 +272,7 @@ export default function MediaPageClient() {
 								alt="Campaign"
 								width={300}
 								height={200}
-								className="rounded-lg border flex-shrink-0"
+								className="rounded-lg border flex-shrink-0 border-gray-300"
 							/>
 						))}
 					</div>

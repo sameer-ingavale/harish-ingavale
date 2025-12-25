@@ -11,7 +11,7 @@ export default function Navbar() {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<nav className="w-full shadow-sm text-gray-900">
+		<nav className="w-full shadow-sm text-gray-900 bg-[#FCF9F2]">
 			<div className="mx-auto px-4">
 				<div className="flex h-20 items-center justify-between">
 					{/* Logo */}
@@ -62,7 +62,7 @@ function NavLinks({ mobile = false, onClick }) {
 	const pathname = usePathname();
 
 	const base = "font-medium transition-colors hover:text-amber-600";
-	const size = mobile ? "text-lg" : "text-base md:text-lg lg:text-xl";
+	const size = mobile ? "text-lg" : "text-base md:text-lg lg:text-lg";
 
 	const linkClass = (href) =>
 		`${base} ${size} ${pathname === href ? "text-amber-600" : "text-gray-900"}`;
@@ -80,18 +80,24 @@ function NavLinks({ mobile = false, onClick }) {
 				Media
 			</Link>
 
-			<Link
+			{/* <Link
 				href="/prospectus"
 				className={linkClass("/prospectus")}
 				onClick={onClick}>
 				Prospectus
-			</Link>
+			</Link> */}
 
 			<Link
 				href="/endorsements"
 				className={linkClass("/endorsements")}
 				onClick={onClick}>
 				Endorsements
+			</Link>
+			<Link
+				href="/search-name-in-voterlist"
+				className={linkClass("/voter-search")}
+				onClick={onClick}>
+				Voter Search <span className="ml-1">→</span>
 			</Link>
 		</>
 	);
@@ -113,13 +119,6 @@ function SocialLinks() {
 				rel="noopener noreferrer"
 				aria-label="Instagram">
 				<FaInstagram />
-			</a>
-			<a
-				href="https://www.youtube.com/watch?v=s9n3K1Ff8uA"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="YouTube">
-				<FaYoutube />
 			</a>
 			<a
 				href="https://www.linkedin.com/in/harish-ingavale"
