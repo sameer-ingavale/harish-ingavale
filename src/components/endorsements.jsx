@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 
 const endorsements = [
 	{
@@ -22,31 +23,83 @@ const endorsements = [
 		isWardResident: false,
 	},
 	{
+		name: "Ramesh Krishnan",
+		image: "/endorsements/ramesh.jpeg",
+		position: "CEO, The Nepal Distilleries",
+		isWardResident: false,
+	},
+	{
+		name: "Ravi Varma",
+		image: "/endorsements/ravi.jpg",
+		position: "Director, Hypro Group",
+		isWardResident: false,
+	},
+	{
+		name: "Ranesh Sinha",
+		image: "/endorsements/ranesh.jpeg",
+		position: "Vice President, United Spirits",
+		isWardResident: false,
+	},
+	{
+		name: "Sahil Jaidhara",
+		image: "/endorsements/sahil.jpg",
+		position: "Director, Sahil Associates",
+		isWardResident: true,
+	},
+	{
 		name: "Vinod Sawant",
 		image: "/endorsements/vinod.jpg",
 		position: "President, SureVin Finvest",
 		isWardResident: true,
 	},
-	// Add more endorsements here
 ];
 
 export default function EndorsementsPage() {
+	const [showWardOnly, setShowWardOnly] = useState(false);
+
+	const filteredEndorsements = showWardOnly
+		? endorsements.filter((e) => e.isWardResident)
+		: endorsements;
+
 	return (
-		<main className="max-w-5xl mx-auto px-6 py-12 text-gray-900">
-			<header className="mb-12 text-left">
-				<h1 className="text-3xl font-bold mb-3">Endorsements & Support</h1>
-				<p className="text-lg text-gray-700">
-					Individuals and leaders who support the campaign and believe in the
-					vision.
+		<main className="max-w-5xl mx-auto px-4 py-12 text-gray-900">
+			{/* Header */}
+			<header className="mb-8">
+				<h1 className="text-3xl font-bold mb-2">Endorsements & Support</h1>
+				<p className="text-gray-700">
+					Leaders and residents who support the campaign and its vision.
 				</p>
 			</header>
 
-			<section className="grid grid-cols-3 md:grid-cols-4 gap-35 sm:gap-0">
-				{endorsements.map((person, i) => (
-					<div
-						key={i}
-						className="flex flex-col items-start text-left hover:opacity-90 transition">
-						<div className="relative h-40 w-40 overflow-hidden rounded-lg shadow-lg md:h-48 md:w-48">
+			{/* Filter */}
+			<div className="mb-8 flex gap-3">
+				<button
+					onClick={() => setShowWardOnly(false)}
+					className={`px-4 py-2 rounded-full text-sm font-medium border ${
+						!showWardOnly
+							? "bg-amber-600 text-white"
+							: "bg-amber-50 text-gray-700 cursor-pointer"
+					}`}>
+					All
+				</button>
+
+				<button
+					onClick={() => setShowWardOnly(true)}
+					className={`px-4 py-2 rounded-full text-sm font-medium border ${
+						showWardOnly
+							? "bg-amber-600 text-white"
+							: "bg-amber-50 text-gray-700 cursor-pointer"
+					}`}>
+					Ward 22 Residents
+				</button>
+			</div>
+
+			{/* Grid */}
+			<section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+				{filteredEndorsements.map((person, i) => (
+					<div key={i} className="flex flex-col">
+						{/* Image */}
+						<div className="relative h-[200px] w-full max-w-[200px] rounded-lg overflow-hidden shadow">
 							<Image
 								src={person.image}
 								alt={person.name}
@@ -55,22 +108,16 @@ export default function EndorsementsPage() {
 							/>
 
 							{person.isWardResident && (
-								<div className="absolute inset-0  pointer-events-none" />
-							)}
-
-							{person.isWardResident && (
 								<span className="absolute bottom-2 left-2 text-[11px] font-medium bg-amber-100 text-amber-900 px-2 py-0.5 rounded">
 									Ward 22
 								</span>
 							)}
 						</div>
 
-						<h3 className="mt-4 text-lg font-semibold text-gray-900">
-							{person.name}
-						</h3>
-
+						{/* Text */}
+						<h3 className="mt-4 text-lg font-semibold">{person.name}</h3>
 						{person.position && (
-							<p className="mt-0.5 text-sm text-gray-600">{person.position}</p>
+							<p className="text-sm text-gray-600">{person.position}</p>
 						)}
 					</div>
 				))}
